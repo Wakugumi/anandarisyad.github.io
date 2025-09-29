@@ -1,0 +1,27 @@
+---
+import config from '../lib/config';
+
+// Example component showing how to use specific parts of the config
+const { site, theme } = config;
+---
+
+<nav class="bg-white shadow-sm border-b">
+  <div class="container mx-auto px-6 py-4">
+    <div class="flex justify-between items-center">
+      <div class="text-xl font-bold" style={`color: ${theme.colors.primary}`}>
+        {site.author}
+      </div>
+      <div class="flex gap-4">
+        <a href={site.linkedin} target="_blank" class="text-gray-600 hover:text-blue-600">
+          LinkedIn
+        </a>
+        <a href={site.github} target="_blank" class="text-gray-600 hover:text-blue-600">
+          GitHub
+        </a>
+        <a href={`mailto:${site.email}`} class="text-gray-600 hover:text-blue-600">
+          Contact
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>

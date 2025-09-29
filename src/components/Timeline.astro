@@ -1,0 +1,211 @@
+---
+/**
+ * Ananda Risyad
+ * 
+ * Timeline component for Experience section
+ * Renders a vertical timeline of experience items with optional modals for detailed views.
+ * Each timeline item can include position, company, location, dates, description, skills, and links.
+ * Uses configuration data from config.ts.
+ */
+import type { ExperienceItem } from '../types/config';
+import Badge from './baseline/Badge.astro';
+import Modal from './baseline/Modal.astro';
+import LinkPreview from './baseline/LinkPreview.astro';
+
+export type TimelineItem =  ExperienceItem &{
+  id?: string;
+  icon?: string;
+  color?: string;
+  // Modal properties
+  clickable?: boolean;
+  modalTitle?: string;
+  modalContent?: string;
+  modalSize?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'full';
+  modalActions?: Array<{
+    label: string;
+    action?: 'close' | 'submit' | 'custom';
+    onClick?: string;
+    href?: string;
+    variant?: 'primary' | 'secondary' | 'danger' | 'ghost';
+  }>;
+}
+
+
+export interface Props {
+  items: TimelineItem[];
+  lineColor?: string;
+  spacing?: 'compact' | 'normal' | 'relaxed';
+  variant?: 'default' | 'minimal' | 'detailed';
+  className?: string;
+  showModals?: boolean;
+}
+
+const { 
+  items,
+  lineColor = 'bg-gray-200',
+  spacing = 'normal',
+  variant = 'default',
+  className = '',
+  showModals = true
+} = Astro.props;
+
+const spacingClasses = {
+  compact: 'space-y-4',
+  normal: 'space-y-8',
+  relaxed: 'space-y-12'
+};
+
+const getStatusColor = (status: string = 'upcoming') => {
+  switch (status) {
+    case 'completed': return 'bg-green-600';
+    case 'current': return 'bg-blue-600';
+    case 'upcoming': return 'bg-gray-400';
+    default: return 'bg-blue-600';
+  }
+};
+
+const getItemClasses = (variant: string) => {
+  switch (variant) {
+    case 'minimal': return 'relative -ms-1.5 flex items-center gap-4';
+    case 'detailed': return 'relative -ms-1.5 flex items-start gap-6';
+    default: return 'relative -ms-1.5 flex items-start gap-4';
+  }
+};
+---
+
+<ol
+  class={`relative ${spacingClasses[spacing]} before:absolute before:-ml-px before:h-full before:w-0.5 before:rounded-full before:${lineColor} ${className}`}
+>
+  {items.map((item, index) => (
+    <li 
+      class={`${getItemClasses(variant)} ${item.clickable !== false ? 'cursor-pointer' : ''}`}
+      onclick={item.clickable !== false && showModals ? `openModal('timeline-${item.id || index}')` : undefined}
+    >
+
+
+        {item.icon ? (
+          <div class={`size-3 shrink-0 rounded-full flex items-center justify-center ${item.color || getStatusColor(item.status)}`}>
+            <span class="text-xs text-white">{item.icon}</span>
+          </div>
+        ) : (
+          <span class={`size-3 shrink-0 rounded-full ${item.color || getStatusColor(item.status)}`}></span>
+        )}
+
+        <div class={variant === 'minimal' ? '' : '-mt-2'}>
+          <time class="text-xs/none font-medium text-gray-700">{item.startFrom}</time>
+
+          <h3 class={`font-bold text-gray-900 ${
+            variant === 'minimal' ? 'text-base' : 
+            variant === 'detailed' ? 'text-xl' : 'text-lg'
+          } ${item.clickable !== false ? 'group-hover:text-blue-600' : ''}`}>
+            {item.position}
+            {item.clickable !== false && showModals && (
+              <svg class="inline-block ml-1 w-4 h-4 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            )}
+          </h3>
+
+          <h4 class="text-sm font-semibold text-gray-800">
+            {item.company} &middot; {item.location ? `${item.location}` : ''}
+          </h4>
+
+          {variant !== 'minimal' && (
+            <p class={`md:block hidden mt-0.5 text-gray-700 ${
+              variant === 'detailed' ? 'text-base' : 'text-sm'
+            }`}>
+              {item.description}
+            </p>
+          )}
+          <div class="mt-2 flex gap-4 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-300">
+            {item.skills && item.skills.map((skill) => (
+              <Badge 
+                text={skill.title} 
+                icon={skill.icon} 
+                iconType={skill.iconType} 
+                iconPosition={skill.iconPosition}
+                size="md"
+
+              />
+            ))}
+          </div>
+        </div>
+    </li>
+
+  ))}
+</ol>
+
+<!-- Modals for each clickable timeline item -->
+{showModals && items.map((item, index) => (
+  item.clickable !== false && (
+    <Modal
+      id={`timeline-${item.id || index}`}
+      title={item.modalTitle || `${item.position} - ${item.company}`}
+      size={item.modalSize || 'lg'}
+      actions={item.modalActions || [
+        { label: 'Close', action: 'close', variant: 'secondary' }
+      ]}
+      zIndex={50}
+    >
+      <!-- Custom modal content slot - you can fill this with detailed information -->
+      <div class="space-y-4 text-sm overflow-y-auto max-h-[70vh]">
+        <!-- Timeline item details -->
+        <div class="bg-gray-50 p-4 rounded-lg">
+          <div class="flex justify-between items-start mb-3">
+            <div>
+              <h3 class="font-semibold text-gray-900">{item.position}</h3>
+              <p class="text-gray-600">{item.company}</p>
+            </div>
+            <div class="text-right text-sm text-gray-500">
+              <div>{item.startFrom} - {item.endAt}</div>
+              {item.location && <div>{item.location}</div>}
+            </div>
+          </div>
+
+          
+          {item.skills && item.skills.length > 0 && (
+            <div class="mb-4">
+              <h4 class="font-medium text-gray-900 mb-2">Skills Used:</h4>
+              <div class="flex flex-wrap gap-2">
+                {item.skills.map((skill) => (
+                  <Badge 
+                    text={skill.title} 
+                    icon={skill.icon} 
+                    iconType={skill.iconType} 
+                    iconPosition={skill.iconPosition}
+                    size="sm"
+                    color="blue"
+                  />
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+        
+        <!-- Additional content section - ready for you to customize -->
+        <div class="space-y-3">
+          <p class="text-gray-700">{item.description}</p>
+          
+          <!-- Links section with previews -->
+          {item.links && item.links.length > 0 && (
+            <div class="pt-4 border-t border-gray-200">
+              <h5 class="font-medium text-gray-900 mb-3">Related Links</h5>
+              <div class="grid gap-3 md:grid-cols-2">
+                {item.links.map((link) => (
+                  <LinkPreview 
+                    url={link.url}
+                    label={link.label}
+                    variant="card"
+                    showFavicon={true}
+                    showImage={false}
+                    maxWidth="100%"
+                  />
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </Modal>
+  )
+))}

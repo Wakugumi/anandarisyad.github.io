@@ -1,0 +1,413 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Resume Configuration Schema",
+  "description": "Schema for resume website configuration",
+  "type": "object",
+  "required": ["site", "personal"],
+  "properties": {
+    "site": {
+      "type": "object",
+      "description": "Website metadata and contact information",
+      "required": ["title", "description", "author"],
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Website title"
+        },
+        "description": {
+          "type": "string",
+          "description": "Website description for SEO"
+        },
+        "author": {
+          "type": "string",
+          "description": "Author name"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "Contact email address"
+        },
+        "phone": {
+          "type": "string",
+          "description": "Phone number"
+        },
+        "location": {
+          "type": "string",
+          "description": "Location/address"
+        },
+        "website": {
+          "type": "string",
+          "format": "uri",
+          "description": "Personal website URL"
+        },
+        "linkedin": {
+          "type": "string",
+          "format": "uri",
+          "description": "LinkedIn profile URL"
+        },
+        "github": {
+          "type": "string",
+          "format": "uri",
+          "description": "GitHub profile URL"
+        }
+      }
+    },
+    "personal": {
+      "type": "object",
+      "description": "Personal information and bio",
+      "required": ["name", "title"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Full name"
+        },
+        "title": {
+          "type": "string",
+          "description": "Professional title/position"
+        },
+        "summary": {
+          "type": "string",
+          "description": "Professional summary/bio"
+        },
+        "avatar": {
+          "type": "string",
+          "format": "uri",
+          "description": "Avatar/profile image URL"
+        },
+        "location": {
+          "type": "string",
+          "description": "Current location"
+        }
+      }
+    },
+    "experience": {
+      "type": "array",
+      "description": "Work experience entries",
+      "items": {
+        "$ref": "#/definitions/experienceItem"
+      }
+    },
+    "education": {
+      "type": "array",
+      "description": "Education entries",
+      "items": {
+        "$ref": "#/definitions/educationItem"
+      }
+    },
+    "skills": {
+      "type": "object",
+      "description": "Skills categorized by type",
+      "properties": {
+        "languages": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Programming languages"
+        },
+        "frameworks": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Frameworks and libraries"
+        },
+        "tools": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Development tools"
+        },
+        "databases": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Database technologies"
+        }
+      },
+      "additionalProperties": {
+        "type": "array",
+        "items": { "type": "string" }
+      }
+    },
+    "projects": {
+      "type": "array",
+      "description": "Portfolio projects",
+      "items": {
+        "$ref": "#/definitions/projectItem"
+      }
+    },
+    "theme": {
+      "type": "object",
+      "description": "Visual theme configuration",
+      "properties": {
+        "colors": {
+          "$ref": "#/definitions/colorScheme"
+        },
+        "fonts": {
+          "$ref": "#/definitions/fontScheme"
+        }
+      }
+    },
+    "timeline": {
+      "type": "array",
+      "description": "Timeline entries for career progression",
+      "items": {
+        "$ref": "#/definitions/timelineItem"
+      }
+    }
+  },
+  "definitions": {
+    "experienceItem": {
+      "type": "object",
+      "required": ["company", "position", "duration"],
+      "properties": {
+        "company": {
+          "type": "string",
+          "description": "Company name"
+        },
+        "position": {
+          "type": "string",
+          "description": "Job position/title"
+        },
+        "duration": {
+          "type": "string",
+          "description": "Duration of employment (e.g., '2 Years', '6 Months')"
+        },
+        "startFrom": {
+          "type": "string",
+          "description": "Start date (e.g., 'Jan 2022')"
+        },
+        "endAt": {
+          "type": "string",
+          "description": "End date (e.g., 'Mar 2022', 'Present')"
+        },
+        "location": {
+          "type": "string",
+          "description": "Work location"
+        },
+        "description": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Job responsibilities and achievements"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["completed", "current", "upcoming"],
+          "description": "Employment status"
+        },
+        "skills": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/skillBadge"
+          },
+          "description": "Skills/technologies used in this role"
+        },
+        "links": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": { "type": "string", "description": "Link label" },
+              "url": { "type": "string", "format": "uri", "description": "Link URL" }
+            },
+            "required": ["label", "url"]
+          },
+          "description": "Related links (e.g., company website, project links)"
+      }
+    },
+    "educationItem": {
+      "type": "object",
+      "required": ["institution", "degree", "duration"],
+      "properties": {
+        "institution": {
+          "type": "string",
+          "description": "Educational institution name"
+        },
+        "degree": {
+          "type": "string",
+          "description": "Degree or certification name"
+        },
+        "duration": {
+          "type": "string",
+          "description": "Study period"
+        },
+        "location": {
+          "type": "string",
+          "description": "Institution location"
+        },
+        "gpa": {
+          "type": "string",
+          "description": "GPA or grade"
+        },
+        "description": {
+          "type": "string",
+          "description": "Additional details about the education"
+        },
+        "logo": {
+          "type": "string",
+          "format": "uri",
+          "description": "Institution logo URL"
+        }
+      }
+    },
+    "projectItem": {
+      "type": "object",
+      "required": ["name", "description"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Project name"
+        },
+        "description": {
+          "type": "string",
+          "description": "Project description"
+        },
+        "technologies": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Technologies used"
+        },
+        "github": {
+          "type": "string",
+          "format": "uri",
+          "description": "GitHub repository URL"
+        },
+        "demo": {
+          "type": "string",
+          "format": "uri",
+          "description": "Live demo URL"
+        },
+        "image": {
+          "type": "string",
+          "format": "uri",
+          "description": "Project screenshot/image URL"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["completed", "in-progress", "planned"],
+          "description": "Project status"
+        }
+      }
+    },
+    "timelineItem": {
+      "type": "object",
+      "required": ["date", "title"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier"
+        },
+        "date": {
+          "type": "string",
+          "description": "Date or date range"
+        },
+        "title": {
+          "type": "string",
+          "description": "Timeline item title"
+        },
+        "description": {
+          "type": "string",
+          "description": "Timeline item description"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["completed", "current", "upcoming"],
+          "description": "Timeline item status"
+        },
+        "icon": {
+          "type": "string",
+          "description": "Icon (emoji, text, or path)"
+        },
+        "color": {
+          "type": "string",
+          "description": "Custom color class"
+        }
+      }
+    },
+    "skillBadge": {
+      "type": "object",
+      "required": ["title"],
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Skill name"
+        },
+        "icon": {
+          "type": "string",
+          "description": "Icon identifier, URL, or emoji"
+        },
+        "iconType": {
+          "type": "string",
+          "enum": ["emoji", "text", "svg", "image", "heroicon", "class"],
+          "description": "Type of icon"
+        },
+        "iconPosition": {
+          "type": "string",
+          "enum": ["left", "right"],
+          "default": "left",
+          "description": "Icon position relative to text"
+        },
+        "color": {
+          "type": "string",
+          "enum": ["emerald", "amber", "red", "blue", "gray", "purple", "indigo"],
+          "description": "Badge color theme"
+        },
+        "variant": {
+          "type": "string",
+          "enum": ["filled", "outlined", "soft"],
+          "default": "filled",
+          "description": "Badge visual variant"
+        },
+        "href": {
+          "type": "string",
+          "format": "uri",
+          "description": "Optional link URL"
+        }
+      }
+    },
+    "colorScheme": {
+      "type": "object",
+      "description": "Color theme configuration",
+      "properties": {
+        "primary": {
+          "type": "string",
+          "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
+          "description": "Primary color (hex)"
+        },
+        "secondary": {
+          "type": "string",
+          "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
+          "description": "Secondary color (hex)"
+        },
+        "accent": {
+          "type": "string",
+          "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
+          "description": "Accent color (hex)"
+        },
+        "background": {
+          "type": "string",
+          "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
+          "description": "Background color (hex)"
+        },
+        "text": {
+          "type": "string",
+          "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
+          "description": "Text color (hex)"
+        }
+      }
+    },
+    "fontScheme": {
+      "type": "object",
+      "description": "Font configuration",
+      "properties": {
+        "heading": {
+          "type": "string",
+          "description": "Font family for headings"
+        },
+        "body": {
+          "type": "string",
+          "description": "Font family for body text"
+        },
+        "mono": {
+          "type": "string",
+          "description": "Font family for monospace text"
+        }
+      }
+    }
+  }
+}

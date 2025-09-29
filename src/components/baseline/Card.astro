@@ -1,0 +1,23 @@
+---
+interface Props {
+  isShadowed?: boolean;
+  direction?: 'horizontal' | 'vertical';
+  class?: string;
+  id?: string;
+}
+const { isShadowed, direction } = Astro.props;
+
+---
+
+<div class="relative rounded-xl border-4 border-gray-800 bg-white" id={Astro.props.id}>
+            <div class={`flex ${direction === 'horizontal' ? 'flex-row' : 'flex-col'} space-y-2 overflow-x-auto px-8 py-6 md:overflow-hidden`}>
+               <slot />
+            </div>
+
+            {isShadowed === true && (
+                <div class="absolute inset-0 flex items-center" style="z-index: -1; margin: 0">
+                    <div class="left-6 -mr-16 h-full w-full translate-x-4 scale-y-95 transform rounded-xl border-4 border-gray-800"></div>
+                </div>
+            )}
+
+        </div>

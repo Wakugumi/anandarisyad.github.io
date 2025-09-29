@@ -1,0 +1,188 @@
+---
+export interface LinkPreviewData {
+  url: string;
+  title?: string;
+  description?: string;
+  image?: string;
+  siteName?: string;
+  favicon?: string;
+}
+
+export interface Props {
+  url: string;
+  label?: string;
+  className?: string;
+  variant?: 'card' | 'inline' | 'minimal';
+  showFavicon?: boolean;
+  showImage?: boolean;
+  maxWidth?: string;
+  target?: '_blank' | '_self';
+}
+
+const {
+  url,
+  label,
+  className = '',
+  variant = 'card',
+  showFavicon = true,
+  showImage = true,
+  maxWidth = '400px',
+  target = '_blank'
+} = Astro.props;
+
+// Function to fetch metadata (this would be handled by a service in production)
+async function fetchMetadata(url: string): Promise<LinkPreviewData> {
+  try {
+    // In a real implementation, you'd use a service like:
+    // - Open Graph API
+    // - Custom scraping service
+    // - Third-party services like Microlink, Link Preview API, etc.
+    
+    // For now, we'll return fallback data with some common sites
+    const domain = new URL(url).hostname;
+    
+    // Predefined metadata for common sites (you can expand this)
+    const knownSites: Record<string, Partial<LinkPreviewData>> = {
+      'github.com': {
+        siteName: 'GitHub',
+        favicon: 'https://github.com/favicon.ico',
+        title: 'GitHub Repository',
+        description: 'Code repository hosted on GitHub'
+      },
+      'linkedin.com': {
+        siteName: 'LinkedIn',
+        favicon: 'https://linkedin.com/favicon.ico',
+        title: 'LinkedIn Profile',
+        description: 'Professional network profile'
+      },
+      'youtube.com': {
+        siteName: 'YouTube',
+        favicon: 'https://youtube.com/favicon.ico',
+        title: 'YouTube Video',
+        description: 'Video content on YouTube'
+      },
+      'demo.example.com': {
+        siteName: 'Live Demo',
+        favicon: '🚀',
+        title: 'Project Demo',
+        description: 'Interactive demonstration of the project'
+      }
+    };
+    
+    const siteData = knownSites[domain] || {};
+    
+    return {
+      url,
+      title: siteData.title || label || 'External Link',
+      description: siteData.description || `Visit ${domain}`,
+      siteName: siteData.siteName || domain,
+      favicon: siteData.favicon || `https://www.google.com/s2/favicons?domain=${domain}&sz=32`,
+      image: siteData.image
+    };
+  } catch (error) {
+    console.error('Error fetching metadata:', error);
+    return {
+      url,
+      title: label || 'External Link',
+      description: 'Visit link for more information'
+    };
+  }
+}
+
+const metadata = await fetchMetadata(url);
+
+const variantClasses = {
+  card: 'block p-4 border border-gray-200 rounded-lg hover:border-gray-300 hover:shadow-sm transition-all',
+  inline: 'inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 hover:underline',
+  minimal: 'text-blue-600 hover:underline'
+};
+---
+
+{variant === 'card' ? (
+  <a 
+    href={url} 
+    target={target}
+    rel="noopener noreferrer"
+    class={`${variantClasses[variant]} ${className}`}
+    style={`max-width: ${maxWidth}`}
+  >
+    <div class="flex gap-3">
+      {showImage && metadata.image && (
+        <img 
+          src={metadata.image} 
+          alt=""
+          class="w-16 h-16 object-cover rounded flex-shrink-0"
+          loading="lazy"
+        />
+      )}
+      
+      <div class="flex-1 min-w-0">
+        <div class="flex items-center gap-2 mb-1">
+          {showFavicon && metadata.favicon && (
+            <img 
+              src={metadata.favicon} 
+              alt=""
+              class="w-4 h-4 flex-shrink-0"
+              loading="lazy"
+              onerror="this.style.display='none'"
+            />
+          )}
+          <span class="text-xs text-gray-500 truncate">{metadata.siteName}</span>
+        </div>
+        
+        <h4 class="font-medium text-gray-900 text-sm line-clamp-2 mb-1">
+          {metadata.title}
+        </h4>
+        
+        {metadata.description && (
+          <p class="text-xs text-gray-600 line-clamp-2">
+            {metadata.description}
+          </p>
+        )}
+      </div>
+      
+      <svg class="w-4 h-4 text-gray-400 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+      </svg>
+    </div>
+  </a>
+) : variant === 'inline' ? (
+  <a 
+    href={url} 
+    target={target}
+    rel="noopener noreferrer"
+    class={`${variantClasses[variant]} ${className}`}
+  >
+    {showFavicon && metadata.favicon && (
+      <img 
+        src={metadata.favicon} 
+        alt=""
+        class="w-4 h-4"
+        loading="lazy"
+        onerror="this.style.display='none'"
+      />
+    )}
+    <span>{metadata.title}</span>
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+    </svg>
+  </a>
+) : (
+  <a 
+    href={url} 
+    target={target}
+    rel="noopener noreferrer"
+    class={`${variantClasses[variant]} ${className}`}
+  >
+    {metadata.title} →
+  </a>
+)}
+
+<style>
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

@@ -1,0 +1,4 @@
+@import "tailwindcss";
+
+/** Icons plugin from NPM */
+@import 'devicon/devicon.min.css';

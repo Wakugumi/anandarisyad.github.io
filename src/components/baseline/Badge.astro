@@ -1,0 +1,136 @@
+---
+export interface Props {
+  text: string;
+  variant?: 'filled' | 'outlined' | 'soft';
+  color?: 'emerald' | 'amber' | 'red' | 'blue' | 'gray' | 'purple' | 'indigo';
+  size?: 'sm' | 'md' | 'lg';
+  icon?: string; // Can be emoji, text, or path/URL to image
+  iconType?: 'emoji' | 'text' | 'svg' | 'image' | 'heroicon' | 'class';
+  iconPosition?: 'left' | 'right';
+  rounded?: 'sm' | 'md' | 'full';
+  className?: string;
+  href?: string;
+  target?: '_blank' | '_self';
+  onClick?: string;
+}
+
+const {
+  text,
+  variant = 'filled',
+  color = 'gray',
+  size = 'md',
+  icon,
+  iconType = 'emoji',
+  iconPosition = 'left',
+  rounded = 'full',
+  className = '',
+  href,
+  target = '_self',
+  onClick
+} = Astro.props;
+
+const colorClasses = {
+  filled: {
+    emerald: 'bg-emerald-100 text-emerald-700',
+    amber: 'bg-amber-100 text-amber-700',
+    red: 'bg-red-100 text-red-700',
+    blue: 'bg-blue-100 text-blue-700',
+    gray: 'bg-gray-100 text-gray-700',
+    purple: 'bg-purple-100 text-purple-700',
+    indigo: 'bg-indigo-100 text-indigo-700'
+  },
+  outlined: {
+    emerald: 'border border-emerald-500 text-emerald-700 bg-transparent',
+    amber: 'border border-amber-500 text-amber-700 bg-transparent',
+    red: 'border border-red-500 text-red-700 bg-transparent',
+    blue: 'border border-blue-500 text-blue-700 bg-transparent',
+    gray: 'border border-gray-500 text-gray-700 bg-transparent',
+    purple: 'border border-purple-500 text-purple-700 bg-transparent',
+    indigo: 'border border-indigo-500 text-indigo-700 bg-transparent'
+  },
+  soft: {
+    emerald: 'bg-emerald-50 text-emerald-600 ring-1 ring-emerald-200',
+    amber: 'bg-amber-50 text-amber-600 ring-1 ring-amber-200',
+    red: 'bg-red-50 text-red-600 ring-1 ring-red-200',
+    blue: 'bg-blue-50 text-blue-600 ring-1 ring-blue-200',
+    gray: 'bg-gray-50 text-gray-600 ring-1 ring-gray-200',
+    purple: 'bg-purple-50 text-purple-600 ring-1 ring-purple-200',
+    indigo: 'bg-indigo-50 text-indigo-600 ring-1 ring-indigo-200'
+  }
+};
+
+const sizeClasses = {
+  sm: 'px-2 py-0.5 text-xs',
+  md: 'px-2.5 py-0.5 text-sm',
+  lg: 'px-3 py-1 text-base'
+};
+
+const roundedClasses = {
+  sm: 'rounded',
+  md: 'rounded-md',
+  full: 'rounded-full'
+};
+
+const iconSizeClasses = {
+  sm: 'size-xl me-2 text-xl',
+  md: 'size-xl me-2 text-2xl',
+  lg: 'size-xl me-2 text-4xl'
+};
+
+const baseClasses = `flex items-center justify-center whitespace-nowrap font-medium transition-colors ${colorClasses[variant][color]} ${sizeClasses[size]} ${roundedClasses[rounded]} ${className}`;
+
+// Built-in heroicons
+const heroIcons = {
+  check: 'M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z',
+  warning: 'M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z',
+  receipt: 'M8.25 9.75h4.875a2.625 2.625 0 010 5.25H12M8.25 9.75L10.5 7.5M8.25 9.75L10.5 12m9-7.243V21.75l-3.75-1.5-3.75 1.5-3.75-1.5-3.75 1.5V4.757c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0c1.1.128 1.907 1.077 1.907 2.185z',
+  x: 'M6 18L18 6M6 6l12 12',
+  plus: 'M12 4.5v15m7.5-7.5h-15',
+  info: 'M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853L14.25 15M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z'
+};
+
+const getIconSpacing = (position: string) => {
+  const spacing = size === 'sm' ? '1' : size === 'lg' ? '2' : '1.5';
+  return position === 'left' ? `-ms-1 me-${spacing}` : `ms-${spacing} -me-1`;
+};
+
+const renderIcon = () => {
+  if (!icon) return null;
+
+  const iconClasses = `${iconSizeClasses[size]} ${getIconSpacing(iconPosition)}`;
+
+  switch (iconType) {
+    case 'emoji':
+    case 'text':
+      return `<span class="${iconClasses}">${icon}</span>`;
+    
+    case 'image':
+      return `<img src="${icon}" alt="" class="${iconClasses} object-contain" />`;
+    
+    case 'svg':
+      return `<img src="${icon}" alt="" class="${iconClasses} object-contain" />`;
+    
+    case 'heroicon':
+      const iconPath = heroIcons[icon];
+      return iconPath ? `<svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="${iconClasses}"><path stroke-linecap="round" stroke-linejoin="round" d="${iconPath}" /></svg>` : '';
+    
+    case 'class':
+        return `<span class="${iconClasses} ${icon}"></span>`;
+    default:
+      return `<span class="${iconClasses}">${icon}</span>`;
+  }
+};
+
+const Tag = href ? 'a' : 'span';
+---
+<Tag class={baseClasses} href={href} target={href ? target : undefined} onclick={onClick}>
+    {iconPosition === 'left' && <Fragment set:html={renderIcon()} />}
+    <span>{text}</span>
+    {iconPosition === 'right' && <Fragment set:html={renderIcon()} />}
+</Tag>

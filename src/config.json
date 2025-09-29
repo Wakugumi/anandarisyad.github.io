@@ -1,0 +1,176 @@
+{
+  "$schema": "./config.schema.json",
+  "site": {
+    "title": "Your Resume",
+    "description": "Professional resume website",
+    "author": "Your Name",
+    "email": "your.email@example.com",
+    "phone": "+1 (555) 123-4567",
+    "location": "Your City, Country",
+    "website": "https://yourwebsite.com",
+    "linkedin": "https://linkedin.com/in/yourprofile",
+    "github": "https://github.com/yourusername"
+  },
+  "personal": {
+    "name": "Ananda Risyad",
+    "title": "Full Stack Developer",
+    "summary": "Experienced software engineer with 5+ years of experience in full-stack development, specializing in modern web technologies and cloud architecture.",
+    "avatar": "https://api.dicebear.com/7.x/identicon/svg?seed=ananda",
+    "location": "Jakarta, ID"
+  },
+  "experience": [{
+      "company": "TM Mangunsong Lawfirm",
+      "position": "Freelance Web Developer",
+      "duration": "3 Months",
+      "startFrom": "Jan 2022",
+      "endAt": "Mar 2022",
+      "location": "Jakarta, ID",
+      "description": [
+        "Led development of microservices architecture serving 1M+ users",
+        "Implemented CI/CD pipelines reducing deployment time by 60%",
+        "Mentored junior developers and conducted code reviews"
+      ],
+      "status": "completed",
+      "skills": [{
+          "title": "PHP",
+          "icon": "devicon-php-plain",
+          "iconType": "class",
+          "iconPosition": "left"
+        },
+        {
+          "title": "cPanel",
+          "icon": "devicon-cpanel-plain",
+          "iconType": "class",
+          "iconPosition": "left"
+        },
+        {
+          "title": "Bootstrap",
+          "icon": "devicon-bootstrap-plain",
+          "iconType": "class",
+          "iconPosition": "left"
+        
+        }
+      ],
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://tmmlawyers.com/",
+          "icon": "external-link"
+        }
+      ]
+    },
+    {
+      "company": "Timestamp Photobooth",
+      "position": "Lead Software Engineer",
+      "duration": "3 Months",
+      "startFrom": "Jan 2022",
+      "endAt": "Mar 2022",
+      "location": "Jakarta, ID",
+      "description": [
+        "Led development of microservices architecture serving 1M+ users",
+        "Implemented CI/CD pipelines reducing deployment time by 60%",
+        "Mentored junior developers and conducted code reviews"
+      ],
+      "status": "completed",
+      "skills": [{
+          "title": "JavaScript",
+          "icon": "devicon-javascript-plain",
+          "iconType": "class",
+          "iconPosition": "left"
+        },
+        {
+          "title": "Node.js",
+          "icon": "devicon-nodejs-plain",
+          "iconType": "class",
+          "iconPosition": "left"
+        },
+        {
+          "title": "React",
+          "icon": "devicon-react-original",
+          "iconType": "class",
+          "iconPosition": "left"
+        }
+      ],
+      "links": [
+        {
+          "label": "GitHub repository",
+          "url": "https://github.com/Ducktrio/timestamp-photobooth"
+        }
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Bina Nusantara University",
+      "degree": "Bachelor of Computer Science and Mathematics (S.Si., S.Kom.)",
+      "duration": "2022 - 2026",
+      "location": "Jakarta, ID",
+      "gpa": "3.22/4.0",
+      "description": "Focused on software engineering and web technologies",
+      "logo": "https://binus.ac.id/wp-content/uploads/2022/08/logo-binus.svg"
+  }   ],
+  "skills": {
+    "languages": ["JavaScript", "TypeScript", "Python", "PHP", "Java"],
+    "frameworks": ["React", "Vue.js", "Node.js", "Express", "Astro", "Bootstrap"],
+    "tools": ["Docker", "Kubernetes", "AWS", "Git", "Jenkins", "cPanel"],
+    "databases": ["PostgreSQL", "MongoDB", "Redis", "MySQL"]
+  },
+  "projects": [
+    {
+      "name": "E-commerce Platform",
+      "description": "Full-stack e-commerce solution with payment integration",
+      "technologies": ["React", "Node.js", "PostgreSQL", "Stripe"],
+      "github": "https://github.com/yourusername/ecommerce",
+      "demo": "https://demo.example.com",
+      "status": "completed"
+    },
+    {
+      "name": "Task Management App",
+      "description": "Real-time collaborative task management application",
+      "technologies": ["Vue.js", "Socket.io", "MongoDB", "Express"],
+      "github": "https://github.com/yourusername/taskapp",
+      "demo": "https://taskapp.example.com",
+      "status": "in-progress"
+    }
+  ],
+  "theme": {
+    "colors": {
+      "primary": "#3B82F6",
+      "secondary": "#64748B",
+      "accent": "#10B981",
+      "background": "#FFFFFF",
+      "text": "#1F2937"
+    },
+    "fonts": {
+      "heading": "Inter, sans-serif",
+      "body": "Inter, sans-serif",
+      "mono": "JetBrains Mono, monospace"
+    }
+  },
+  "timeline": [
+    {
+      "id": "education",
+      "date": "2014 - 2018",
+      "title": "Computer Science Education",
+      "description": "Bachelor's degree in Computer Science with focus on web technologies",
+      "status": "completed",
+      "icon": "🎓"
+    },
+    {
+      "id": "first-job",
+      "date": "Jan 2022 - Mar 2022",
+      "title": "Started Web Development Career",
+      "description": "First freelance project with TM Mangunsong Lawfirm",
+      "status": "completed",
+      "icon": "💼"
+    },
+    {
+      "id": "current",
+      "date": "Present",
+      "title": "Full Stack Development",
+      "description": "Currently working on various web development projects",
+      "status": "current",
+      "icon": "🚀"
+    }
+  ]
+}

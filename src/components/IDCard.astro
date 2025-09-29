@@ -1,0 +1,28 @@
+---
+/**
+ * Ananda Risyad
+ * 
+ * Identity Card component.
+ * This component displays personal information such as name, title, location, and avatar.
+ * The data is sourced from the config.json file under the 'personal' section.
+ */
+import config from '../lib/config';
+import Card from './baseline/Card.astro';
+const {personal} = config;
+---
+    <Card isShadowed={true} direction='vertical'>
+        <div class="flex flex-col gap-6 items-center mb-6">
+            <img src={personal.avatar} alt="Profile Photo" class="w-24 h-24 rounded-full mr-6 object-cover border-2 border-gray-300" />
+            <div>
+                <h1 class="text-4xl font-bold font-title mb-4">{personal.name}</h1>
+                <p class="">{personal.title}</p>
+                <p class=" mt-1">{personal.location}</p>
+            </div>
+            </div>
+        
+        </div>
+    </Card>
+
+
+
+
