@@ -10,7 +10,7 @@ const { isShadowed, direction } = Astro.props;
 ---
 
 <div class="relative rounded-xl border-4 border-gray-800 bg-white" id={Astro.props.id}>
-            <div class={`flex ${direction === 'horizontal' ? 'flex-row' : 'flex-col'} space-y-2 overflow-x-auto px-8 py-6 md:overflow-hidden`}>
+            <div class={`flex ${direction === 'horizontal' ? 'flex-row' : 'flex-col'} space-y-2 overflow-x-auto px-8 py-6 md:overflow-hidden ${Astro.props.class ?? ''}`}>
                <slot />
             </div>
 

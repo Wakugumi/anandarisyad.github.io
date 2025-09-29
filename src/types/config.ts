@@ -11,6 +11,7 @@ export interface ResumeConfig {
   projects?: ProjectItem[];
   theme?: ThemeConfig;
   timeline?: TimelineItem[];
+  links?: { label: string; url: string; icon:string }[];
 }
 
 export interface SiteConfig {
@@ -67,11 +68,16 @@ export interface SkillsConfig {
 export interface ProjectItem {
   name: string;
   description: string;
-  technologies?: string[];
-  github?: string;
+  technologies?: {
+    title: string;
+    icon?: string;
+    iconType?: 'emoji' | 'text' | 'svg' | 'image' | 'heroicon' | 'class';
+  }[];
+  link?: string | "#"
   demo?: string;
-  image?: string;
+  image?: string | 'projects/default.jpg';
   status?: 'completed' | 'in-progress' | 'planned';
+  date?:string | Date;
 }
 
 export interface TimelineItem {

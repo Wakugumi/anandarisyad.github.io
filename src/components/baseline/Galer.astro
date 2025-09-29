@@ -1,0 +1,112 @@
+---
+import Badge from './Badge.astro';
+
+/**
+ * @file Path: src/components/baseline/Galer.astro
+ * @description A reusable card component with an image and text overlay.
+ * @author Ananda Risyad
+ * @version 1.1.0
+ * @license MIT
+ */
+
+interface Props {
+  title: string;
+  description: string;
+  imageUrl: string;
+  imageAlt?: string;
+  date?: Date | string;
+  technologies?: {title:string;icon:string;iconType: string;}[];
+  href?: string;
+  class?: string;
+  actionText?: string;
+  actionTheme?: 'default' | 'primary' | 'secondary' | 'accent';
+}
+
+const {
+  title,
+  description,
+  imageUrl,
+  imageAlt = '',
+  date = new Date().toISOString(),
+  technologies = [],
+  href = '#',
+  class: className = '',
+  actionText = 'Read More',
+  actionTheme = 'default',
+} = Astro.props;
+
+// Parse the date
+const articleDate = new Date(date);
+const year = articleDate.getFullYear();
+const month = articleDate.toLocaleString('en-US', { month: 'short' });
+const day = articleDate.getDate();
+
+// Button theme styles
+const buttonThemes = {
+  default: 'bg-gray-800 hover:bg-gray-700 text-gray-100',
+  primary: 'bg-blue-600 hover:bg-blue-700 text-white',
+  secondary: 'bg-gray-600 hover:bg-gray-700 text-white',
+  accent: 'bg-indigo-600 hover:bg-indigo-700 text-white',
+};
+
+const buttonClasses = buttonThemes[actionTheme];
+---
+
+<article class:list={["flex bg-white transition", className]}>
+  <div class="rotate-180 p-2 [writing-mode:_vertical-lr]">
+    <time
+      datetime={date}
+      class="flex items-center justify-between gap-4 text-xs font-bold text-gray-900 uppercase"
+    >
+      <span>{year}</span>
+      <span class="w-px flex-1 bg-gray-900/10"></span>
+      <span>{month} {day}</span>
+    </time>
+  </div>
+
+  <div class="block sm:basis-56 w-[40%]">
+    <img
+      alt={imageAlt}
+      src={imageUrl}
+      class="rounded-lg aspect-square h-full w-full object-cover"
+    />
+  </div>
+
+  <div class="flex flex-col justify-between w-[60%] ml-4">
+    <div class="border-s border-gray-900/10 p-4 sm:border-l-transparent sm:p-6">
+      <a href={href}>
+        <h3 class="font-bold text-gray-900 uppercase">
+          {title}
+        </h3>
+      </a>
+
+      <p class="mt-2 line-clamp-3 text-sm/relaxed text-gray-700">
+        {description}
+      </p>
+
+      <div class="inline-flex overflow-x-scroll gap-4 mt-2 w-full">
+        {technologies.map(x => (
+          <Badge
+            text={x.title}
+            icon={x.icon}
+            iconType={x.iconType!}
+            size='sm'
+            iconPosition="left"/>
+          ))}
+      </div>
+    </div>
+
+    <div class="sm:flex sm:items-end sm:justify-end">
+      <a
+        href={href}
+        class:list={[
+          "block px-5 py-3 text-center text-xs font-bold uppercase transition rounded-lg",
+          buttonClasses
+        ]}
+      >
+        {actionText}
+      </a>
+    </div>
+  </div>
+</article>
+

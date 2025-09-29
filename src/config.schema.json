@@ -149,6 +149,19 @@
       "items": {
         "$ref": "#/definitions/timelineItem"
       }
+    },
+    "links" : {
+      "type": "array",
+      "description": "Additional links (e.g., blogs, portfolios)",
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": { "type": "string", "description": "Link label" },
+          "url": { "type": "string", "format": "uri", "description": "Link URL" },
+          "icon": { "type": "string", "description": "Icon class name, please install the icon library to use it" }
+        },
+        "required": ["label", "url"]
+      }
     }
   },
   "definitions": {
@@ -246,44 +259,21 @@
       }
     },
     "projectItem": {
-      "type": "object",
-      "required": ["name", "description"],
-      "properties": {
-        "name": {
-          "type": "string",
-          "description": "Project name"
-        },
-        "description": {
-          "type": "string",
-          "description": "Project description"
-        },
-        "technologies": {
-          "type": "array",
-          "items": { "type": "string" },
-          "description": "Technologies used"
-        },
-        "github": {
-          "type": "string",
-          "format": "uri",
-          "description": "GitHub repository URL"
-        },
-        "demo": {
-          "type": "string",
-          "format": "uri",
-          "description": "Live demo URL"
-        },
-        "image": {
-          "type": "string",
-          "format": "uri",
-          "description": "Project screenshot/image URL"
-        },
-        "status": {
-          "type": "string",
-          "enum": ["completed", "in-progress", "planned"],
-          "description": "Project status"
-        }
-      }
-    },
+    "type":"object",
+    "properties": {
+      "name": { "type": "string" },
+      "description": { "type": "string" },
+      "image": { "type": "string", "format": "uri", "default": "/projects/default.jpg" },
+      "technologies": {
+        "type": "array", 
+        "items": { "type": "array", "items": { "type":"object", "$ref": "#/definitions/skillBadge" } }
+      },
+      "link": { "type": "string", "format": "uri" },
+      "status": { "type": "string", "enum": ["completed", "in-progress", "planned"] },
+      "date": {"type":"date", "default":"2024-01-01"}
+      
+  }
+},
     "timelineItem": {
       "type": "object",
       "required": ["date", "title"],
@@ -409,5 +399,14 @@
         }
       }
     }
-  }
+  },
+  
+  "skillBadge": {
+    "type": "object",
+    "properties": {
+      "title": { "type": "string" },
+      "icon": { "type": "string" },
+      "iconType": { "type": "string", "enum": ["emoji", "text", "svg", "image", "heroicon", "class"] },
+      "iconPosition": { "type": "string", "enum": ["left", "right"], "default": "left" },
+        }    }
 }

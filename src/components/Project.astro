@@ -1,0 +1,37 @@
+---
+/**
+ * @file Project.astro
+ * @description Component to display list of projects. See config.json for configuration.
+ * @author Ananda Risyad
+ * @version 1.0.0
+ * @license MIT
+ * 
+ */
+import config from '../lib/config';
+import Card from './baseline/Card.astro';
+import Galer from './baseline/Galer.astro';
+---
+
+<div class="flex flex-col gap-12 m-auto w-full max-w-full">
+<Card isShadowed={true}>
+     <div class="p-6">
+            <h2 class="text-4xl font-bold mb-4">Projects</h2>
+        </div>
+
+        <div class="flex flex-col sm:flex-row overflow-x-auto gap-6 p-6">
+            {config.projects!.map((project) => (
+                <Galer 
+                    title={project.name} 
+                    description={project.description} 
+                    imageUrl={project.image || 'projects/default.jpg'} 
+                    imageAlt="Project Image" 
+                    date={project.date} 
+                    year={project.year}
+                    technologies={project.technologies || []}
+                    href={project.link || '#'} 
+                    actionText="View Detail"
+                    class='w-[32rem] max-w-[48rem]'
+                />
+                ))}
+</Card>
+</div>

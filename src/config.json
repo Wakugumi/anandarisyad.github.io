@@ -1,24 +1,24 @@
 {
   "$schema": "./config.schema.json",
   "site": {
-    "title": "Your Resume",
+    "title": "Ananda Risyad",
     "description": "Professional resume website",
-    "author": "Your Name",
-    "email": "your.email@example.com",
-    "phone": "+1 (555) 123-4567",
-    "location": "Your City, Country",
-    "website": "https://yourwebsite.com",
-    "linkedin": "https://linkedin.com/in/yourprofile",
-    "github": "https://github.com/yourusername"
+    "author": "Ananda Risyad",
+    "email": "anandarisyad@proton.me",
+    "phone": "+62 851 5769 9740",
+    "location": "Jakarta, ID",
+    "linkedin": "https://linkedin.com/in/ananda-risyad",
+    "github": "https://github.com/wakugumi"
   },
   "personal": {
     "name": "Ananda Risyad",
-    "title": "Full Stack Developer",
-    "summary": "Experienced software engineer with 5+ years of experience in full-stack development, specializing in modern web technologies and cloud architecture.",
-    "avatar": "https://api.dicebear.com/7.x/identicon/svg?seed=ananda",
+    "title": "Backend Developer",
+    "summary": "Greetings, I am a software engineer, currently focusing in Backend development. Over the years I actively work on web development, some of my work are full stack, some are heavily backend work. In my spare time I do embedded system and IoT for hobby. In this site, you'll find my work experience as well as my works, mostly associated with Software.",
+    "avatar": "public/profile.jpeg",
     "location": "Jakarta, ID"
   },
-  "experience": [{
+  "experience": [
+    {
       "company": "TM Mangunsong Lawfirm",
       "position": "Freelance Web Developer",
       "duration": "3 Months",
@@ -117,20 +117,66 @@
   },
   "projects": [
     {
-      "name": "E-commerce Platform",
-      "description": "Full-stack e-commerce solution with payment integration",
-      "technologies": ["React", "Node.js", "PostgreSQL", "Stripe"],
-      "github": "https://github.com/yourusername/ecommerce",
-      "demo": "https://demo.example.com",
+      "name": "Photobooth Software",
+      "description": "Timestamp Photobooth propretiary software made open-source. It's an Linux-based kiosk app for taking photos. Integrated with common DSLR branrds",
+       "date": "2024-10-01",
+      "link": "https://github.com/Ducktrio/timestamp-photobooth",
+      "image": "/projects/photobooth.jpeg",
       "status": "completed"
+      ,
+      "technologies": [{
+        "title": "React",
+        "icon": "devicon-react-original",
+        "iconType": "class"
+      },
+      {
+        "title": "Node.js",
+        "icon": "devicon-nodejs-plain",
+        "iconType": "class"
+      },
+      {
+        "title": "Electron",
+        "icon": "devicon-electron-original",
+        "iconType": "class"
+      },
+      {
+        "title": "TypeScript",
+        "icon": "devicon-typescript-plain",
+        "iconType": "class"
+      }]
     },
     {
-      "name": "Task Management App",
-      "description": "Real-time collaborative task management application",
-      "technologies": ["Vue.js", "Socket.io", "MongoDB", "Express"],
-      "github": "https://github.com/yourusername/taskapp",
-      "demo": "https://taskapp.example.com",
+      "name": "Aventurine",
+      "description": "Open-source food retail management system. Integrated system from Orderning menu app, to POS, payment system, to kitchen tasks system. Offer multi-tenant system and extensible configuration",
+       "date": "2024-10-01",
+      "link": "https://github.com/wakugumi/project-aventurine",
       "status": "in-progress"
+      ,
+      "technologies": [{
+        "title": "NestJS",
+        "icon": "devicon-nestjs-original",
+        "iconType": "class"
+      },
+      {
+        "title": "Node.js",
+        "icon": "devicon-nodejs-plain",
+        "iconType": "class"
+      },
+      {
+        "title": "TypeScript",
+        "icon": "devicon-typescript-plain",
+        "iconType": "class"
+      },
+      {
+        "title": "AngularJS",
+        "icon": "devicon-angularjs-plain",
+        "iconType": "class"
+      },
+      {
+        "title": "PostgreSQL",
+        "icon": "devicon-postgresql-plain",
+        "iconType": "class"
+      } ]
     }
   ],
   "theme": {
@@ -147,30 +193,22 @@
       "mono": "JetBrains Mono, monospace"
     }
   },
-  "timeline": [
+  "links": [
     {
-      "id": "education",
-      "date": "2014 - 2018",
-      "title": "Computer Science Education",
-      "description": "Bachelor's degree in Computer Science with focus on web technologies",
-      "status": "completed",
-      "icon": "🎓"
+      "label": "Email",
+      "url": "mailto:anandarisyad@proton.me"
+,
+"icon": "bi bi-envelope-fill"
     },
     {
-      "id": "first-job",
-      "date": "Jan 2022 - Mar 2022",
-      "title": "Started Web Development Career",
-      "description": "First freelance project with TM Mangunsong Lawfirm",
-      "status": "completed",
-      "icon": "💼"
+      "label": "LinkedIn",
+      "url": "https://linkedin.com/in/ananda-risyad",
+"icon": "bi bi-linkedin"
     },
     {
-      "id": "current",
-      "date": "Present",
-      "title": "Full Stack Development",
-      "description": "Currently working on various web development projects",
-      "status": "current",
-      "icon": "🚀"
+      "label": "GitHub",
+      "url": "https://github.com/wakugumi",
+      "icon": "bi bi-github"
     }
   ]
 }
