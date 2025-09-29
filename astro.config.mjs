@@ -7,7 +7,8 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://anandarisyad.github.io',
+  site: 'https://wakugumi.github.io',
+  base: '/anandarisyad.github.io',
   output: 'static',
   integrations: [alpinejs()],
 
