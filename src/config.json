@@ -14,7 +14,7 @@
     "name": "Ananda Risyad",
     "title": "Backend Developer",
     "summary": "Greetings, I am a software engineer, currently focusing in Backend development. Over the years I actively work on web development, some of my work are full stack, some are heavily backend work. In my spare time I do embedded system and IoT for hobby. In this site, you'll find my work experience as well as my works, mostly associated with Software.",
-    "avatar": "public/profile.jpeg",
+    "avatar": "/profile.jpeg",
     "location": "Jakarta, ID"
   },
   "experience": [
@@ -31,7 +31,8 @@
         "Mentored junior developers and conducted code reviews"
       ],
       "status": "completed",
-      "skills": [{
+      "skills": [
+        {
           "title": "PHP",
           "icon": "devicon-php-plain",
           "iconType": "class",
@@ -48,7 +49,6 @@
           "icon": "devicon-bootstrap-plain",
           "iconType": "class",
           "iconPosition": "left"
-        
         }
       ],
       "links": [
@@ -72,7 +72,8 @@
         "Mentored junior developers and conducted code reviews"
       ],
       "status": "completed",
-      "skills": [{
+      "skills": [
+        {
           "title": "JavaScript",
           "icon": "devicon-javascript-plain",
           "iconType": "class",
@@ -108,10 +109,18 @@
       "gpa": "3.22/4.0",
       "description": "Focused on software engineering and web technologies",
       "logo": "https://binus.ac.id/wp-content/uploads/2022/08/logo-binus.svg"
-  }   ],
+    }
+  ],
   "skills": {
     "languages": ["JavaScript", "TypeScript", "Python", "PHP", "Java"],
-    "frameworks": ["React", "Vue.js", "Node.js", "Express", "Astro", "Bootstrap"],
+    "frameworks": [
+      "React",
+      "Vue.js",
+      "Node.js",
+      "Express",
+      "Astro",
+      "Bootstrap"
+    ],
     "tools": ["Docker", "Kubernetes", "AWS", "Git", "Jenkins", "cPanel"],
     "databases": ["PostgreSQL", "MongoDB", "Redis", "MySQL"]
   },
@@ -119,64 +128,66 @@
     {
       "name": "Photobooth Software",
       "description": "Timestamp Photobooth propretiary software made open-source. It's an Linux-based kiosk app for taking photos. Integrated with common DSLR branrds",
-       "date": "2024-10-01",
+      "date": "2024-10-01",
       "link": "https://github.com/Ducktrio/timestamp-photobooth",
       "image": "/projects/photobooth.jpeg",
-      "status": "completed"
-      ,
-      "technologies": [{
-        "title": "React",
-        "icon": "devicon-react-original",
-        "iconType": "class"
-      },
-      {
-        "title": "Node.js",
-        "icon": "devicon-nodejs-plain",
-        "iconType": "class"
-      },
-      {
-        "title": "Electron",
-        "icon": "devicon-electron-original",
-        "iconType": "class"
-      },
-      {
-        "title": "TypeScript",
-        "icon": "devicon-typescript-plain",
-        "iconType": "class"
-      }]
+      "status": "completed",
+      "technologies": [
+        {
+          "title": "React",
+          "icon": "devicon-react-original",
+          "iconType": "class"
+        },
+        {
+          "title": "Node.js",
+          "icon": "devicon-nodejs-plain",
+          "iconType": "class"
+        },
+        {
+          "title": "Electron",
+          "icon": "devicon-electron-original",
+          "iconType": "class"
+        },
+        {
+          "title": "TypeScript",
+          "icon": "devicon-typescript-plain",
+          "iconType": "class"
+        }
+      ]
     },
     {
       "name": "Aventurine",
       "description": "Open-source food retail management system. Integrated system from Orderning menu app, to POS, payment system, to kitchen tasks system. Offer multi-tenant system and extensible configuration",
-       "date": "2024-10-01",
+      "date": "2024-10-01",
       "link": "https://github.com/wakugumi/project-aventurine",
-      "status": "in-progress"
-      ,
-      "technologies": [{
-        "title": "NestJS",
-        "icon": "devicon-nestjs-original",
-        "iconType": "class"
-      },
-      {
-        "title": "Node.js",
-        "icon": "devicon-nodejs-plain",
-        "iconType": "class"
-      },
-      {
-        "title": "TypeScript",
-        "icon": "devicon-typescript-plain",
-        "iconType": "class"
-      },
-      {
-        "title": "AngularJS",
-        "icon": "devicon-angularjs-plain",
-        "iconType": "class"
-      },
-      {
-        "title": "PostgreSQL",
-        "icon": "devicon-postgresql-plain",
-        "iconType": "class"
-      } ]
+      "status": "in-progress",
+      "technologies": [
+        {
+          "title": "NestJS",
+          "icon": "devicon-nestjs-original",
+          "iconType": "class"
+        },
+        {
+          "title": "Node.js",
+          "icon": "devicon-nodejs-plain",
+          "iconType": "class"
+        },
+        {
+          "title": "TypeScript",
+          "icon": "devicon-typescript-plain",
+          "iconType": "class"
+        },
+        {
+          "title": "AngularJS",
+          "icon": "devicon-angularjs-plain",
+          "iconType": "class"
+        },
+        {
+          "title": "PostgreSQL",
+          "icon": "devicon-postgresql-plain",
+          "iconType": "class"
+        }
+      ]
     }
   ],
   "theme": {
@@ -196,14 +207,13 @@
   "links": [
     {
       "label": "Email",
-      "url": "mailto:anandarisyad@proton.me"
-,
-"icon": "bi bi-envelope-fill"
+      "url": "mailto:anandarisyad@proton.me",
+      "icon": "bi bi-envelope-fill"
     },
     {
       "label": "LinkedIn",
       "url": "https://linkedin.com/in/ananda-risyad",
-"icon": "bi bi-linkedin"
+      "icon": "bi bi-linkedin"
     },
     {
       "label": "GitHub",
@@ -212,3 +222,4 @@
     }
   ]
 }
+
