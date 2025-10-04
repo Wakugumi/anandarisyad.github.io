@@ -13,7 +13,7 @@
   "personal": {
     "name": "Ananda Risyad",
     "title": "Backend Developer",
-    "summary": "Greetings, I am a software engineer, currently focusing in Backend development. Over the years I actively work on web development, some of my work are full stack, some are heavily backend work. In my spare time I do embedded system and IoT for hobby. In this site, you'll find my work experience as well as my works, mostly associated with Software.",
+    "summary": "Greetings. This site is my personal resume. I'm a software engineer, currently focusing in Backend development. Over the years I actively work on web development, some of my work are full stack, some are heavily backend work. In my spare time I do embedded system and IoT for hobby. In this site, you'll find my work experience as well as my works, mostly associated with Software.",
     "avatar": "/profile.jpeg",
     "location": "Jakarta, ID"
   },
@@ -22,13 +22,13 @@
       "company": "TM Mangunsong Lawfirm",
       "position": "Freelance Web Developer",
       "duration": "3 Months",
-      "startFrom": "Jan 2022",
-      "endAt": "Mar 2022",
+      "startFrom": "Apr 2022",
+      "endAt": "Jun 2022",
       "location": "Jakarta, ID",
       "description": [
-        "Led development of microservices architecture serving 1M+ users",
-        "Implemented CI/CD pipelines reducing deployment time by 60%",
-        "Mentored junior developers and conducted code reviews"
+        "Develop company's profile as a website with LAMP stack (Linux, Apache, MySQL, PHP) hosted in cPanel shared hosting.",
+        " Responsbile for delivering the company services and their selling points with the website, matching the company's brand and target audience.",
+        " Deploy and manage an hosted cloud server for integrating their internal email server, company database, and hosting website."
       ],
       "status": "completed",
       "skills": [
@@ -62,22 +62,26 @@
     {
       "company": "Timestamp Photobooth",
       "position": "Lead Software Engineer",
-      "duration": "3 Months",
-      "startFrom": "Jan 2022",
-      "endAt": "Mar 2022",
+      "duration": "9 Months",
+      "startFrom": "Aug 2024",
+      "endAt": "Apr 2025",
       "location": "Jakarta, ID",
       "description": [
-        "Led development of microservices architecture serving 1M+ users",
-        "Implemented CI/CD pipelines reducing deployment time by 60%",
-        "Mentored junior developers and conducted code reviews"
+        "Lead a team of developers in building a hightly flexible, maintainable, multi-tenant photo booth platform backed with cloud infrastructure.",
+        " Our primary challenge was to build scalable backend service by starting in a cost optimized architecture. Furthermore, all booths must be manageable and monitored by the corresponding tenant's admin.",
+        " We develop our backend services mostly with ASPNET and NodeJS for micro-services. Our UI library is made with React as packages for extensible and developer experience. The booth are made using Linux-based machine running our kiosk app made with Electron."
       ],
       "status": "completed",
       "skills": [
         {
-          "title": "JavaScript",
-          "icon": "devicon-javascript-plain",
+          "title": "TypeScript",
+          "icon": "devicon-typescript-plain",
           "iconType": "class",
           "iconPosition": "left"
+        },
+        {
+          "title": "ASPNET",
+          "icon": "devicon-dotnetcore-plain"
         },
         {
           "title": "Node.js",
@@ -222,4 +226,3 @@
     }
   ]
 }
-
