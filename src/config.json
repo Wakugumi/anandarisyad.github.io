@@ -81,7 +81,9 @@
         },
         {
           "title": "ASPNET",
-          "icon": "devicon-dotnetcore-plain"
+          "icon": "devicon-dotnetcore-plain",
+          "iconType": "class",
+          "iconPosition": "left"
         },
         {
           "title": "Node.js",
